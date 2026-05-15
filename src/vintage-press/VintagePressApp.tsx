@@ -18,6 +18,7 @@ export function App() {
   const [params, setParams] = useState<VintageParams>(() => ({ ...DEFAULT_PARAMS }));
   const [busy, setBusy] = useState(false);
   const [origDims, setOrigDims] = useState<{ w: number; h: number } | null>(null);
+  const [inverted, setInverted] = useState(false);
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const fileRef = useRef<HTMLInputElement>(null);
@@ -25,7 +26,7 @@ export function App() {
   const dragSessionRef = useRef(false);
   const [dragHover, setDragHover] = useState(false);
 
-  const runEffects = useVintageRender(sourceImgRef, canvasRef, styleId, params);
+  const runEffects = useVintageRender(sourceImgRef, canvasRef, styleId, params, inverted);
 
   const render = useCallback(() => {
     if (!sourceImgRef.current || !canvasRef.current) return;
@@ -52,6 +53,7 @@ export function App() {
     img.onload = () => {
       sourceImgRef.current = img;
       setOrigDims({ w: img.width, h: img.height });
+      setInverted(false);
       setImgSrc(url);
     };
     img.src = url;
@@ -126,7 +128,14 @@ export function App() {
             canvasRef={canvasRef}
             fileRef={fileRef}
             actions={
-              imgSrc ? <ActionBar onReplace={onOpenFilePicker} onDownload={onDownload} /> : null
+              imgSrc ? (
+                <ActionBar
+                  onReplace={onOpenFilePicker}
+                  inverted={inverted}
+                  onInvertToggle={() => setInverted((v) => !v)}
+                  onDownload={onDownload}
+                />
+              ) : null
             }
             onDragOver={onDragOver}
             onDragLeave={onDragLeave}

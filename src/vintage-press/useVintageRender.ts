@@ -1,6 +1,13 @@
 import type { RefObject } from "react";
 import { useCallback } from "react";
-import { applyCarbon, applyEngraving, applyHalftone, applyScatter, applyStippled } from "./effects";
+import {
+  applyCarbon,
+  applyEngraving,
+  applyHalftone,
+  applyScatter,
+  applyStippled,
+  invertRgb,
+} from "./effects";
 import type { StyleId, VintageParams } from "./types";
 
 const MAX_DIMENSION = 1200;
@@ -10,6 +17,7 @@ export function useVintageRender(
   canvasRef: RefObject<HTMLCanvasElement | null>,
   styleId: StyleId,
   params: VintageParams,
+  inverted: boolean,
 ): () => void {
   return useCallback(() => {
     const img = sourceImgRef.current;
@@ -49,6 +57,7 @@ export function useVintageRender(
       default:
         break;
     }
+    if (inverted) invertRgb(dst);
     ctx.putImageData(dstImg, 0, 0);
-  }, [canvasRef, sourceImgRef, styleId, params]);
+  }, [canvasRef, sourceImgRef, styleId, params, inverted]);
 }

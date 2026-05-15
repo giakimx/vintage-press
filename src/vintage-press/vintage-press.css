@@ -331,6 +331,11 @@
 .vig-act:hover {
   background: var(--ink-3);
 }
+.vig-act-active {
+  background: var(--ink-2);
+  border-color: var(--paper);
+  color: var(--paper);
+}
 .vig-act svg {
   width: 12px;
   height: 12px;
