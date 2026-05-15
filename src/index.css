@@ -1,0 +1,21 @@
+@import "../styles/globals.css";
+@import "./vintage-press/vintage-press.css";
+
+@layer base {
+  :root {
+    @apply font-sans;
+  }
+
+  body {
+    @apply min-w-[320px] min-h-screen relative m-0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation: none;
+    transition: none;
+  }
+}

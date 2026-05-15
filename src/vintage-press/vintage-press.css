@@ -1,0 +1,369 @@
+.vig-root {
+  --paper: #e8e2d3;
+  --paper-dim: #d4cdbb;
+  --ink: #1c1c1e;
+  --ink-2: #2a2a2c;
+  --ink-3: #3a3a3c;
+  --accent: #b8956a;
+  --rule: rgba(232, 226, 211, 0.12);
+  font-family: "JetBrains Mono", monospace;
+  background: var(--ink);
+  color: var(--paper);
+  min-height: 100vh;
+  padding: 32px 24px 64px;
+  background-image:
+    radial-gradient(circle at 20% 10%, rgba(184, 149, 106, 0.04) 0%, transparent 50%),
+    radial-gradient(circle at 80% 90%, rgba(120, 140, 95, 0.03) 0%, transparent 50%);
+}
+.vig-wrap {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* Masthead */
+.vig-head {
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 32px;
+}
+.vig-title {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 700;
+  font-size: clamp(40px, 6vw, 72px);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+.vig-title em {
+  font-style: italic;
+  font-weight: 700;
+  color: var(--accent);
+}
+.vig-sub {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  opacity: 0.55;
+  margin-top: 8px;
+}
+
+/* Layout */
+.vig-grid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 32px;
+}
+@media (max-width: 880px) {
+  .vig-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Sidebar */
+.vig-side {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+.vig-section-label {
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  opacity: 0.55;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.vig-section-label svg {
+  width: 12px;
+  height: 12px;
+}
+
+.vig-styles {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.vig-style-btn {
+  all: unset;
+  cursor: pointer;
+  padding: 10px 12px;
+  border: 1px solid transparent;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.15s;
+}
+.vig-style-btn:hover {
+  background: var(--ink-2);
+}
+.vig-style-btn[data-active="true"] {
+  background: var(--ink-2);
+  border-color: var(--rule);
+}
+.vig-style-num {
+  font-size: 10px;
+  opacity: 0.5;
+  font-variant-numeric: tabular-nums;
+}
+.vig-style-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.vig-style-name {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 18px;
+  font-weight: 500;
+}
+.vig-style-cap {
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0.5;
+}
+.vig-style-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--paper);
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.vig-style-btn[data-active="true"] .vig-style-dot {
+  opacity: 1;
+}
+
+/* Sliders */
+.vig-control {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+.vig-control-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.vig-control-label {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+.vig-control-val {
+  font-size: 11px;
+  opacity: 0.8;
+  font-variant-numeric: tabular-nums;
+}
+.vig-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 1px;
+  background: var(--rule);
+  outline: none;
+  margin: 8px 0;
+}
+.vig-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  background: var(--paper);
+  border-radius: 0;
+  cursor: pointer;
+  transform: rotate(45deg);
+}
+.vig-slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  background: var(--paper);
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+}
+
+/* Stage */
+.vig-stage {
+  background: var(--ink-2);
+  border: 1px solid var(--rule);
+  min-height: 480px;
+  display: flex;
+  flex-direction: column;
+}
+.vig-stage-head {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--rule);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.vig-stage-head-l {
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  opacity: 0.55;
+}
+.vig-stage-head-r {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.vig-pill {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border: 1px solid var(--rule);
+  opacity: 0.7;
+}
+.vig-stage-body {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  position: relative;
+  min-height: 480px;
+}
+.vig-canvas {
+  max-width: 100%;
+  max-height: 70vh;
+  image-rendering: pixelated;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+}
+
+/* Drop zone */
+.vig-drop {
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  border: 1px dashed var(--rule);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  cursor: pointer;
+  transition: all 0.15s;
+  padding: 40px;
+}
+.vig-drop:hover,
+.vig-drop[data-hover="true"] {
+  background: rgba(184, 149, 106, 0.04);
+  border-color: var(--accent);
+}
+.vig-drop-icon {
+  width: 48px;
+  height: 48px;
+  opacity: 0.4;
+}
+.vig-drop-title {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 28px;
+  font-style: italic;
+  font-weight: 300;
+}
+.vig-drop-sub {
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  opacity: 0.55;
+}
+.vig-divider {
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  opacity: 0.35;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.vig-divider::before,
+.vig-divider::after {
+  content: "";
+  width: 32px;
+  height: 1px;
+  background: var(--rule);
+}
+.vig-pick-btn {
+  all: unset;
+  cursor: pointer;
+  padding: 10px 24px;
+  border: 1px solid var(--paper);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  transition: all 0.15s;
+}
+.vig-pick-btn:hover {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+/* Action bar */
+.vig-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  padding: 14px 18px;
+  border-top: 1px solid var(--rule);
+}
+.vig-act {
+  all: unset;
+  cursor: pointer;
+  padding: 8px 16px;
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  border: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.15s;
+}
+.vig-act:hover {
+  background: var(--ink-3);
+}
+.vig-act svg {
+  width: 12px;
+  height: 12px;
+}
+.vig-act-primary {
+  background: var(--paper);
+  color: var(--ink);
+  border-color: var(--paper);
+}
+.vig-act-primary:hover {
+  background: var(--paper-dim);
+}
+
+/* Busy spinner */
+@keyframes vig-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.vig-busy {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.vig-busy svg {
+  animation: vig-spin 1s linear infinite;
+  width: 12px;
+  height: 12px;
+}
